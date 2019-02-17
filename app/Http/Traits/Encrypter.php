@@ -30,7 +30,8 @@ trait Encrypter
      */
     public static function generateHash(string $data)
     {
-        $hash = Hash::make($data);
+        //$hash = Hash::make($data);
+        $hash = hash_pbkdf2('sha256', $data, env('APP_KEY'), 10, 32);
         return $hash;
     }
 

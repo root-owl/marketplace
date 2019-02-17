@@ -15,7 +15,7 @@ return [
     |
  */
 
-    'driver' => 'argon',
+    'driver' => 'bcrypt',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,6 +30,7 @@ return [
 
     'bcrypt' => [
         'rounds' => env('BCRYPT_ROUNDS', 10),
+        'salt' => 'Sahil'
     ],
 
     /*

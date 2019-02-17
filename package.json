@@ -23,5 +23,17 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0"
+    },
+    "dependencies": {
+        "ajv": "^6.9.1",
+        "eslint": "^5.14.0",
+        "localforage": "^1.7.3",
+        "nprogress": "^0.2.0",
+        "react-click-outside": "^3.0.1",
+        "react-document-title": "^2.0.3",
+        "react-redux": "^6.0.0",
+        "react-router-dom": "^4.3.1",
+        "redux": "^4.0.1",
+        "redux-thunk": "^2.3.0"
     }
 }
