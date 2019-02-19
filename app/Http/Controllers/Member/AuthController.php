@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API\Auth;
+namespace App\Http\Controllers\Member;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Auth \{
+use App\Http\Requests\Member\Auth \{
     RegisterRequest,
         LoginRequest
 };
@@ -88,10 +88,12 @@ class AuthController extends Controller
         // check data is same or not
         if ($user->email == $decypted_data) {
             // create the token and login the user to the system
+            // login the user and create the session for laravel
+            auth()->login($user);
             $token = auth('api')->login($user);
             // update the token
             self::updateToken($user, $token);
-            return new UserResource($user->load('token'));
+            return response()->json(['message' => 'Logn successfull!'], 200);
         }
         return response()->json(['message' => 'Please enter valid credentails.'], 500);
     }

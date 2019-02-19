@@ -11,4 +11,8 @@
 |
  */
 
-Route::view('/', 'app');
+Route::namespace('Member')->name('member')->group(function () {
+    Route::get('/', 'AuthController@showLoginForum')->name('login');
+    Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register')->name('register');
+});
