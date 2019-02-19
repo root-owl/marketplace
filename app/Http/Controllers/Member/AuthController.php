@@ -74,8 +74,6 @@ class AuthController extends Controller
         $combined_string = $user->email . $user->salt . $request->input('password');
         $hashed_key = self::generateHash($combined_string);
 
-        //die($hashed_key);
-
         // decrypt the public  and private keys
         $encrypter = new Encrypterr($hashed_key, config('app.cipher'));
         $private_key = $encrypter->decrypt($user->private_key);
@@ -87,9 +85,9 @@ class AuthController extends Controller
 
         // check data is same or not
         if ($user->email == $decypted_data) {
-            // create the token and login the user to the system
             // login the user and create the session for laravel
             auth()->login($user);
+            // create the token and login the user to the system
             $token = auth('api')->login($user);
             // update the token
             self::updateToken($user, $token);
