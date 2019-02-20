@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@font-face {
+
+    font-family: PingFangSC-Regular;
+    src: url(../fonts/PingFang-SC-Regular.ttf);
+    }
+*{
+    margin:0;
+    padding:0;
+    outline: 0;
+}
+ul,ol{
+    margin:0;
+}
+.dash-page{
+    font-family: 'Montserrat', sans-serif;
+}
+.menu-top{
+    border-bottom: 1px solid #f2f2f2;
+}
+.header-top{
+    max-width: 100%;
+    width:1200px;
+    justify-content: center;
+    align-items: center;
+    padding-top:15px;
+    padding-bottom: 12px;
+    margin:auto;
+}
+.header-top .logo{
+    width:50%;
+}
+.header-top .top-menu{
+    width: 50%;
+}
+
+.logo img{
+    width:144px;
+    height:31px;
+}
+.header-top .top-menu ul li{
+    display: inline-block;
+
+}
+.top-menu ul li a{
+    font-size: 16px;
+    color: #8D8FB4;
+    letter-spacing: 2px;
+    text-align: center;
+    line-height: 16px;
+    padding: 0 54px 0 54px;
+    text-decoration: none;
+
+}
+.top-menu ul li a:last-child{
+    padding-right: 0;
+}
+
+/*secondary Menu*/
+.secondary-menu{
+    max-width: 100%;
+    width:1200px;
+    justify-content: end;
+    align-items: center;
+    margin: auto;
+
+}
+.secondary-menu ul li a{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #22B1AB;
+    letter-spacing: 2px;
+    text-align: center;
+    line-height: 16px;}
+
+.log ul li .nav-link:last-child{
+    padding-right: 0;
+}
+.login-menu{
+    width: 30%;
+}
+.second-menu ul li{
+    
+    padding-right: 54px;
+    display: inline-block;
+    color: #8D8FB4;
+    font-family: Montserrat-Regular;
+font-size: 16px;
+color: #8D8FB4;
+letter-spacing: 2px;
+text-align: center;
+line-height: 16px;
+}
+.login-menu ul li{
+    display: inline-block;
+}
+
+.bg-dark{
+    background: #fff;
+}
+.sub-menu{
+    background: #fff;
+}
+
+/*content*/
+
+.content{
+    max-width:100%;
+    width:1200px;
+    margin:auto;
+    margin-top: 20px;
+}
+.content .side-menu{
+    width:338px;
+    height:1075px;
+    background: #4CBFBA;
+    padding-left: 33px;
+    padding-top: 18px;
+}
+.content .intra-page{
+    width: 842px;
+    margin-left: 20px;
+    height:100px;
+    background: #f8f8f8;
+}
+
+.side-menu h2{
+    font-family:PingFangSC-Regular;
+    font-size: 32px;
+    height: 76px;
+color: #FFFFFF;
+letter-spacing: 0;
+line-height: 32px;
+}
+.side-menu ul li{
+    list-style: none;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    padding-left: 30px;
+}
+.side-menu a{
+    
+    font-family:PingFangSC-Regular;
+font-size: 16px;
+color: #FFFFFF;
+letter-spacing: 0;
+line-height: 16px;
+}
+.side-menu a:hover{
+    text-decoration: none;
+}
+.side-menu ul li:hover{
+    background-image: linear-gradient(-270deg, rgba(34,177,171,0.00) 0%, #22A9A3 52%, rgba(34,177,171,0.00) 100%);
+}
+.title-header{
+    background: #4CBFBA;
+    height:76px;
+    padding:26px;
+}
+.title-header img{
+    width:26px;
+    height: 26.5px;
+    float: right;
+}
+.title-header label{
+    font-size: 20px;
+color: #FFFFFF;
+letter-spacing: 0;
+line-height: 24px;
+width:216px;
+}
+.intra-details table{
+    background: #F8F8F8;
+    text-align: center;
+    width:100%;
+    font-family:PingFangSC-Regular;
+    font-size: 16px;
+color: #BFBFBF;
+letter-spacing: 0;
+line-height: 16px;
+
+}
+.intra-details table tr th{
+    padding-top: 26px;
+    padding-bottom:26px;
+}
+.details{
+    background:#fff;
+    border-bottom:1px solid #F8F8F8;
+    
+}
+
+.details:last-child {
+    border-bottom: 0;
+}
+.details td{
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+
+.billing{
+    position: absolute;
+    top:1023px;
+}
+
+.billing label{
+    font-family:PingFangSC-Regular;
+    font-size: 32px;
+color: #FFFFFF;
+letter-spacing: 0;
+line-height: 32px;
+}
+.billing tr{
+    padding-top: 18px;
+}
+
+.billing table tr td{
+    font-family:PingFangSC-Regular;
+    font-size: 16px;
+color: #FFFFFF;
+letter-spacing: 0;
+min-height: 540px;
+}
+.bill-amount{
+    float: right;
+}
+.billing button{
+    font-size: 16px;
+    width: 185px;
+    padding: 0;
+    margin: 0;
+    height: 43px;
+    border: 0;
+    font-family: PingFangSC-Regular;
+font-size: 16px;
+color: #FFFFFF;
+letter-spacing: 0;
+background: rgba(255, 255, 255, 0.4)
+}
+.pagination{
+    margin-top: 200px;
+}
+.pagination ul{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+.pagination ul li {
+    display: inline-block;
+    padding-left: 23px;
+    position: relative;
+}
+
+.pagination ul li label{
+    font-size: 16px;
+color: #E7E7E7;
+letter-spacing: 0;
+text-align: center;
+line-height: 16px;
+}
+
+.pagination ul::before{
+    position: absolute;
+    content: '';
+    background-image: linear-gradient(-270deg, #E7E7E7 0%, rgba(216,216,216,0.00) 100%);
+    width: 33%;
+    right: 0;
+    height: 2px;
+    top: 50%;
+}
+.pagination ul::after{
+    position: absolute;
+    content: '';
+    background-image: linear-gradient(270deg, #E7E7E7 0%, rgba(216,216,216,0.00) 100%);
+    width: 33%;
+    left: 0;
+    height: 2px;
+    top: 50%;
+}
+.guide{
+    width:510px;
+height:16px;
+margin:auto; 
+margin-top:88px;
+}
+.guide label{
+    font-family: PingFangSC-Regular;
+font-size: 16px;
+color: #59C7C3;
+letter-spacing: 0;
+line-height: 16px;
+}
+.package ul li a{
+    display: inline-block;
+    width:190px;
+    height:146px ;
+    background: #FFFFFF;
+box-shadow: 0 12px 24px 0 rgba(219,219,219,0.50);
+margin:auto;
+text-align: center;
+padding-top:auto;
+}
+.package{
+    margin-top:53px;
+}
+.package ul li {
+    margin-left:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.package ul li .vpn{
+    width: 77px;
+    height: 77px;
+    object-fit: contain;
+    margin: auto;
+    display: inline-block;
+    
+}
+.package ul li .cloud{
+    width: 72px;
+    height: 49px;
+    object-fit: contain;
+    margin: auto;
+    display: inline-block;
+    
+}
+.package ul li .cloud{
+    width: 127px;
+    height: 54px;
+    object-fit: contain;
+    margin: auto;
+    display: inline-block;
+    
+}
+.details td label{
+    display: inline-block;
+    font-family: PingFangSC-Regular;
+font-size: 14px;
+color: #59C7C3;
+letter-spacing: 0;
+line-height: 14px;
+}
+.progress{
+    width: 128px;
+    height: 8px;
+    margin: auto;
+    position: relative;
+    background: #F2F2F2;
+    display: inline-block;
+}
+.progress label{
+    font-family: PingFangSC-Regular;
+font-size: 14px;
+color: #59C7C3;
+letter-spacing: 0;
+line-height: 14px;
+}
+.pay-btn{
+    left: 0;
+    margin-left: -33px;
+    width: 100%;
+    height: 52px;
+    margin-top: 78px;
+}
+
+.pay-btn .active{
+    background: #5ADDD8;
+}
+
+.progress-bar{
+    background-image: linear-gradient(-270deg, #83E1DE 0%, #4CBFBA 100%);
+    /* box-shadow: 0 2px 4px 0 #82E0DE; */
+    height: 8px;
+    width: 90px;
+    position: absolute;
+    top: 0;
+    box-shadow: 0 2px 4px 0 #82E0DE;
+}
+.navbar-dark .navbar-nav .nav-link{
+    color: #000000;
+    padding: 23px 23px;
+    position: relative;
+}
+.navbar-nav .nav-item a{
+    position: relative;
+}   
+.navbar-nav .nav-item.active a{
+    color:#018835 !important;
+
+}
+.navbar-dark .navbar-toggler-icon {
+    background-image: url(../images/menu.png);
+    width: 24px;
+    height:24px;
+    object-fit: contain;
+  
+}
+
+.navbar-dark .navbar-toggler{
+    border-color: rgba(156, 151, 151, 0.35);
+}
+.navbar-nav .nav-item a:hover:after, .navbar-nav .nav-item.active a:after{
+    position: absolute;
+    width: 21px;
+    background: #018835;
+    height: 2px;
+    content: '';
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    bottom: 0;
+}
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus{
+    color:#018835;
+}
+
+
+.text-bl li{
+    display: inline-block;
+    width:210px;
+    height:44px;
+    padding-left:22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.text-bl li label{
+    font-family: PingFangSC-Regular;
+font-size: 18px;
+color: #A6A7A9;
+letter-spacing: 0;
+text-align: center;
+line-height: 18px;
+}
+
+.launch_cool{
+    width: 100%;
+    position: relative;
+    margin-top: 52px;
+}
+.box1{
+    width: 190px;
+    text-align: center;
+    margin-right: 10px;
+}
+.box1 a{
+    background: #FFFFFF;
+    box-shadow: 0 12px 24px 0 rgba(219,219,219,0.50);
+    width: 100%;
+    height: 146px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.box1 a img{
+    width: 77px;
+    height: 77px;
+    object-fit: contain;
+}
+.box1 p{
+font-size: 17px;
+color: #A6A7A9;
+letter-spacing: 0;
+text-align: center;
+line-height: 30px;
+margin-top: 18px;
+width: 150px;
+}
+

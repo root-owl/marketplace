@@ -26,6 +26,14 @@ class AuthController extends Controller
     use Encrypter, AuthHelper;
 
     /**
+     * Show the login form to the user
+     */
+    public function showLoginForm()
+    {
+        return view('marketplace.auth.login');
+    }
+
+    /**
      * Register the user
      */
     public function register(RegisterRequest $request)
