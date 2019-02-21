@@ -54,7 +54,7 @@
                         <div class="table_cell mt-5 ml-5">
                             <h2>Sign In</h2>
                             <div class="text-box-design mt-5">
-                                {{ Form::email('email', null, ['class' => 'txt-box3', 'placeholder' => 'Email Address']) }}
+                                {{ Form::text('email', null, ['class' => 'txt-box3', 'placeholder' => 'Email Address']) }}
                                 <span class="error email"></span>
                             </div>
                             <div class=" text-box-design">
@@ -81,7 +81,7 @@
                                 <span class="error family_name"></span>
                             </div>
                             <div class="text-box-design">
-                                {{ Form::email('email', null, ['class' => 'txt-box3', 'placeholder' => 'Email Address']) }}
+                                {{ Form::text('email', null, ['class' => 'txt-box3', 'placeholder' => 'Email Address']) }}
                                 <span class="error email"></span>
                             </div>
                             <div class="text-box-design">

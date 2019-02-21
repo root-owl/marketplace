@@ -38,32 +38,41 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        // create the keys
-        $data = self::generateKeys();
+        try {
+            DB::beginTransaction();
+            // create the keys
+            $data = self::generateKeys();
 
-        // generate the salt
-        $data['salt'] = self::generateSalt();//uniqid(mt_rand(), true);
+            // generate the salt
+            $data['salt'] = self::generateSalt();//uniqid(mt_rand(), true);
 
-        // Create the Argon2 Hash
-        $combined_string = $request->input('email') . $data['salt'] . $request->input('password');
-        $hashed_key = self::generateHash($combined_string);
+            // Create the Argon2 Hash
+            $combined_string = $request->input('email') . $data['salt'] . $request->input('password');
+            $hashed_key = self::generateHash($combined_string);
 
-        // encrypt the public and private keys
-        $encrypter = new Encrypterr($hashed_key, config('app.cipher'));
-        $data['private_key'] = $encrypter->encrypt($data['private_key']);
-        $data['public_key'] = $encrypter->encrypt($data['public_key']);
+            // encrypt the public and private keys
+            $encrypter = new Encrypterr($hashed_key, config('app.cipher'));
+            $data['private_key'] = $encrypter->encrypt($data['private_key']);
+            $data['public_key'] = $encrypter->encrypt($data['public_key']);
 
-        // save the data
-        $user = new User;
-        $user->email = $request->input('email');
-        $user->fill($data);
+            // save the data
+            $user = new User;
+            $user->email = $request->input('email');
+            $user->fill($data);
+            $user->save();
 
-        if ($user->save()) {
+            auth()->login($user);
+            // create the token and login the user to the system
+            $token = auth('api')->login($user);
+            // update the token
+            self::updateToken($user, $token);
             // hit the sdk api's
-            return new UserResource($user);
+            DB::commit();
+            return response()->json(['message' => 'Signup successfull!', 'redirectTo' => route('member.dashboard')], 200);
+        } catch(Exception $e) {
+            DB::rollback();
+            return response()->json(['message' => __('something went wrong')], 500);
         }
-
-        return response()->json(['message' => __('something went wrong')], 500);
     }
 
     /**
@@ -99,7 +108,7 @@ class AuthController extends Controller
             $token = auth('api')->login($user);
             // update the token
             self::updateToken($user, $token);
-            return response()->json(['message' => 'Logn successfull!'], 200);
+            return response()->json(['message' => 'Logn successfull!', 'redirectTo' => route('member.dashboard')], 200);
         }
         return response()->json(['message' => 'Please enter valid credentails.'], 500);
     }

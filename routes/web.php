@@ -12,7 +12,8 @@
  */
 
 Route::namespace('Member')->name('member.')->group(function () {
-    Route::get('/', 'AuthController@showLoginForm')->name('login');
-    Route::post('/', 'AuthController@login');
+    Route::get('/', 'AuthController@showLoginForm')->name('home');
+    Route::post('login', 'AuthController@login')->name('login');
     Route::post('register', 'AuthController@register')->name('register');
+    Route::view('dashboard', 'marketplace.dashboard')->name('dashboard');
 });
