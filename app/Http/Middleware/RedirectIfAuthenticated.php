@@ -18,9 +18,11 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            if($request->ajax()) {
+                return response()->json(['message' => 'Unauthorized.', 'redirectTo' => route('member.dashboard')], 401);
+            }
             return redirect()->route('member.dashboard');
         }
-
         return $next($request);
     }
 }
