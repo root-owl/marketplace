@@ -44,9 +44,8 @@
                             <a class="nav-link" href="#">187...com</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Exit</a>
+                            <a class="nav-link" href="{{ route('member.logout') }}">Logout</a>
                         </li>
-
                     </ul>
                 </div>
             </div>

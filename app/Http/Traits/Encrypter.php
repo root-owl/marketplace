@@ -30,10 +30,15 @@ trait Encrypter
      */
     public static function generateHash(string $data)
     {
-        //$hash = Hash::make($data);
-        $hash = hash_pbkdf2('sha256', $data, env('APP_KEY'), 10, 32);
+        $hash = hash_pbkdf2('sha256', $data, env('APP_KEY'), 400000, 32);
         return $hash;
     }
+
+    public static function rutime($ru, $rus, $index) {
+        return ($ru["ru_$index.tv_sec"]*1000 + intval($ru["ru_$index.tv_usec"]/1000))
+         -  ($rus["ru_$index.tv_sec"]*1000 + intval($rus["ru_$index.tv_usec"]/1000));
+    }
+
 
     /**
      * Create the Public and Private key

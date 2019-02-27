@@ -26,11 +26,36 @@ class AuthController extends Controller
     use Encrypter, AuthHelper;
 
     /**
+     * The user object
+     */
+    protected $user;
+
+    /**
+     * Constrctor of the class
+     */
+    public function __construct()
+    {
+        $this->middleware('member')->only('dashboard','logout');
+        $this->middleware(function($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        })->only('dashboard','logout');
+    }
+
+    /**
      * Show the login form to the user
      */
     public function showLoginForm()
     {
         return view('marketplace.auth.login');
+    }
+
+    /**
+     * Show the Dahboard
+     */
+    public function dashboard()
+    {
+        return view('marketplace.dashboard');
     }
 
     /**
@@ -85,7 +110,7 @@ class AuthController extends Controller
             $user = User::where('email', $request->input('email'))->latest()->first();
 
             if (!$user) {
-                return response()->json(['errors' => ['email' => ['Please enter valid email / password.']]]);
+                return response()->json(['message' => 'Please enter valid credentails.'], 400);
             }
 
             // Create the Argon2 Hash
@@ -115,6 +140,21 @@ class AuthController extends Controller
             }
         } catch(\Exception $e) {
             return response()->json(['message' => 'Please enter valid credentails.'], 400);
+        }
+    }
+
+    /**
+     * Logout the user
+     */
+    public function logout(Request $request)
+    {
+        // delete the token from the database
+        if(Token::where('user_id', $this->user->id)->delete()) {
+            auth()->logout();
+            return redirect()->route('member.home');
+        }
+        else {
+            return redirect()->route('member.dashboard');
         }
     }
 }

@@ -62,8 +62,6 @@ $(function() {
             else {
                 show_FlashMessage('Something went wrong!', 'error');
             }
-        },
-        complete: function() {
             stopLoader();
         }
     });

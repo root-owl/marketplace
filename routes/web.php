@@ -12,8 +12,11 @@
  */
 
 Route::namespace('Member')->name('member.')->group(function () {
-    Route::get('/', 'AuthController@showLoginForm')->name('home');
-    Route::post('login', 'AuthController@login')->name('login');
-    Route::post('register', 'AuthController@register')->name('register');
-    Route::view('dashboard', 'marketplace.dashboard')->name('dashboard');
+    Route::middleware('guest')->group(function() {
+        Route::get('/', 'AuthController@showLoginForm')->name('home');
+        Route::post('login', 'AuthController@login')->name('login');
+        Route::post('register', 'AuthController@register')->name('register');    
+    });
+    Route::get('dashboard', 'AuthController@dashboard')->name('dashboard');
+    Route::get('logout', 'AuthController@logout')->name('logout');
 });

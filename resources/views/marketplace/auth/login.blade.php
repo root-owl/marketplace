@@ -58,11 +58,11 @@
                                 <span class="error email"></span>
                             </div>
                             <div class=" text-box-design">
-                                {{ Form::password('password', ['class' => 'txt-box3', 'placeholder' => 'Passwqord']) }}
+                                {{ Form::password('password', ['class' => 'txt-box3', 'placeholder' => 'Password']) }}
                                 <span class="error password"></span>
                             </div>
                             <div class="">
-                                <button type="button" class="sign-in-button" id="loginBtn">Enter</button>
+                                <button type="submit" class="sign-in-button" id="loginBtn">Enter</button>
                             </div>
                         </div>
                     {{ Form::close() }}
@@ -85,15 +85,15 @@
                                 <span class="error email"></span>
                             </div>
                             <div class="text-box-design">
-                                {{ Form::password('password', ['class' => 'txt-box3', 'placeholder' => 'Passwqord']) }}
+                                {{ Form::password('password', ['class' => 'txt-box3', 'placeholder' => 'Password']) }}
                                 <span class="error password"></span>
                             </div>
                             <div class="text-box-design">
-                                {{ Form::password('password_confirmation', ['class' => 'txt-box3', 'placeholder' => 'Confirm Passwqord']) }}
+                                {{ Form::password('password_confirmation', ['class' => 'txt-box3', 'placeholder' => 'Confirm Password']) }}
                                 <span class="error password_confirmation"></span>
                             </div>
                             <div class="">
-                                <button type="button" id="registerBtn" class="sign-up-button">Create an account</button>
+                                <button type="submit" id="registerBtn" class="sign-up-button">Create an account</button>
                             </div>
                         </div>
                     {{ Form::close() }}
