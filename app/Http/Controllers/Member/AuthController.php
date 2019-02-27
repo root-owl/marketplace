@@ -80,36 +80,41 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        // get the user and check if it exists then get the details and match
-        $user = User::where('email', $request->input('email'))->latest()->first();
+        try {
+            // get the user and check if it exists then get the details and match
+            $user = User::where('email', $request->input('email'))->latest()->first();
 
-        if (!$user) {
-            return response()->json(['errors' => ['email' => ['Please enter valid email / password.']]]);
+            if (!$user) {
+                return response()->json(['errors' => ['email' => ['Please enter valid email / password.']]]);
+            }
+
+            // Create the Argon2 Hash
+            $combined_string = $user->email . $user->salt . $request->input('password');
+            $hashed_key = self::generateHash($combined_string);
+
+            // decrypt the public  and private keys
+            $encrypter = new Encrypterr($hashed_key, config('app.cipher'));
+            $private_key = $encrypter->decrypt($user->private_key);
+            $public_key = $encrypter->decrypt($user->public_key);
+
+            // encrypt the data with public key and decrypt it with private key
+            $encrypted_data = self::encrypt($user->email, $public_key);
+            $decypted_data = self::decrypt($encrypted_data, $private_key);
+
+            // check data is same or not
+            if ($user->email == $decypted_data) {
+                // login the user and create the session for laravel
+                auth()->login($user);
+                // create the token and login the user to the system
+                $token = auth('api')->login($user);
+                // update the token
+                self::updateToken($user, $token);
+                return response()->json(['message' => 'Logn successfull!', 'redirectTo' => route('member.dashboard')], 200);
+            } else {
+                return response()->json(['message' => 'Please enter valid credentails.'], 500);
+            }
+        } catch(\Exception $e) {
+            return response()->json(['message' => 'Please enter valid credentails.'], 500);
         }
-
-        // Create the Argon2 Hash
-        $combined_string = $user->email . $user->salt . $request->input('password');
-        $hashed_key = self::generateHash($combined_string);
-
-        // decrypt the public  and private keys
-        $encrypter = new Encrypterr($hashed_key, config('app.cipher'));
-        $private_key = $encrypter->decrypt($user->private_key);
-        $public_key = $encrypter->decrypt($user->public_key);
-
-        // encrypt the data with public key and decrypt it with private key
-        $encrypted_data = self::encrypt($user->email, $public_key);
-        $decypted_data = self::decrypt($encrypted_data, $private_key);
-
-        // check data is same or not
-        if ($user->email == $decypted_data) {
-            // login the user and create the session for laravel
-            auth()->login($user);
-            // create the token and login the user to the system
-            $token = auth('api')->login($user);
-            // update the token
-            self::updateToken($user, $token);
-            return response()->json(['message' => 'Logn successfull!', 'redirectTo' => route('member.dashboard')], 200);
-        }
-        return response()->json(['message' => 'Please enter valid credentails.'], 500);
     }
 }
