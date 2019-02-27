@@ -71,7 +71,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Signup successfull!', 'redirectTo' => route('member.dashboard')], 200);
         } catch(Exception $e) {
             DB::rollback();
-            return response()->json(['message' => __('something went wrong')], 500);
+            return response()->json(['message' => __('something went wrong')], 400);
         }
     }
 
@@ -111,10 +111,10 @@ class AuthController extends Controller
                 self::updateToken($user, $token);
                 return response()->json(['message' => 'Logn successfull!', 'redirectTo' => route('member.dashboard')], 200);
             } else {
-                return response()->json(['message' => 'Please enter valid credentails.'], 500);
+                return response()->json(['message' => 'Please enter valid credentails.'], 400);
             }
         } catch(\Exception $e) {
-            return response()->json(['message' => 'Please enter valid credentails.'], 500);
+            return response()->json(['message' => 'Please enter valid credentails.'], 400);
         }
     }
 }
