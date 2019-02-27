@@ -46,7 +46,7 @@ $(function() {
                         }
                     }
                     else {
-                        $('span.'+key+'.error').empty().text(value).fadeIn().addClass('text-danger');
+                        $('span.'+key+'.error').empty().text(value).fadeIn().addClass('text-danger').css('display', 'block');
                     }
                 });
             }
