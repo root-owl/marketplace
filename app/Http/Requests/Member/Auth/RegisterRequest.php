@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
             'given_name' => 'bail|required|string|min:1|max:50',
             'family_name' => 'bail|required|string|min:1|max:50',
             'email' => 'bail|required|email|min:5|max:120|unique:users',
-            'password' => 'bail|required|string|min:8|max:16|confirmed'
+            'password' => 'bail|required|string|min:8|max:32|confirmed'
         ];
     }
 }
