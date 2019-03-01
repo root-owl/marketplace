@@ -15,7 +15,8 @@ use App\Models \{
 };
 use App\Http\Traits \{
     Encrypter,
-        AuthHelper
+        AuthHelper,
+        Network
 };
 use \Illuminate\Encryption\Encrypter as Encrypterr;
 use DB;
@@ -23,7 +24,7 @@ use Auth;
 
 class AuthController extends Controller
 {
-    use Encrypter, AuthHelper;
+    use Encrypter, AuthHelper, Network;
 
     /**
      * The user object
@@ -83,6 +84,7 @@ class AuthController extends Controller
             // save the data
             $user = new User;
             $user->email = $request->input('email');
+            $user->role = 1;
             $user->fill($data);
             $user->save();
 
@@ -92,11 +94,26 @@ class AuthController extends Controller
             // update the token
             self::updateToken($user, $token);
             // hit the sdk api's
+            $skd_result = self::hitAPI(env("SDK_URL")."/auth/register", 'post', [
+                'first_name' => $request->input('given_name'),
+                'last_name' => $request->input('family_name'),
+                'public_key' => null,
+                'public_address' => null,
+                'description' => null,
+                'role' => $user->role,
+                'email' => $user->email
+            ]);
+
+            if(!$skd_result) {
+                DB::rollback();
+                return response()->json(['message' => __('Something went wrong!')], 400);
+            }
+            
             DB::commit();
             return response()->json(['message' => 'Signup successfull!', 'redirectTo' => route('member.dashboard')], 200);
         } catch(Exception $e) {
             DB::rollback();
-            return response()->json(['message' => __('something went wrong')], 400);
+            return response()->json(['message' => __('Something went wrong!')], 400);
         }
     }
 
